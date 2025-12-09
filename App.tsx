@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
-import { PaperProvider } from "react-native-paper";
 
 export default function App() {
   return (
-    <PaperProvider>
-      
-    </PaperProvider>
+    <View>
+      <Text>Open up App.tsx to start working on your app!</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
