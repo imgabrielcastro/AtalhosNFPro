@@ -7,22 +7,19 @@ import { theme } from "./src/theme/theme";
 import Routes from "./src/routes/AuthStack";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./src/store";
+import { store } from "./src/store";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <PaperProvider theme={theme}>
-            <NavigationContainer>
-              <Routes />
-              <StatusBar style="light" />
-            </NavigationContainer>
-          </PaperProvider>
-        </GestureHandlerRootView>
-      </PersistGate>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <PaperProvider theme={theme}>
+          <NavigationContainer>
+            <Routes />
+            <StatusBar style="light" />
+          </NavigationContainer>
+        </PaperProvider>
+      </GestureHandlerRootView>
     </Provider>
   );
 }

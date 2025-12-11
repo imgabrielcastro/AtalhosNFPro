@@ -1,5 +1,5 @@
-// src/store/slices/shortcutsSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AVAILABLE_SHORTCUTS, BusinessType } from "../../data/mockData";
 
 export interface Shortcut {
   id: string;
@@ -7,23 +7,27 @@ export interface Shortcut {
 }
 
 interface IShortcutState {
-  businessType: string;                    // pilates, musculacao, box
-  defaultShortcuts: Shortcut[];            // atalhos padrão carregados do mock
-  customShortcuts: Shortcut[];             // atalhos adicionados pelo usuário
+  businessType: BusinessType;
+  defaultShortcuts: Shortcut[];
+  customShortcuts: Shortcut[];
 }
 
+// ✅ Estado inicial SEMPRE vai ser carregado
 const initialState: IShortcutState = {
-  businessType: "",
-  defaultShortcuts: [],
+  businessType: "pilates",
+  defaultShortcuts: AVAILABLE_SHORTCUTS["pilates"],
   customShortcuts: [],
 };
 
 const shortcutsSlice = createSlice({
   name: "shortcuts",
-  initialState,
+  initialState, // ✅ Vai usar sempre este initialState
   reducers: {
-    setBusinessType(state, action: PayloadAction<string>) {
-      state.businessType = action.payload;
+    setBusinessType(state, action: PayloadAction<BusinessType>) {
+      const type = action.payload;
+      state.businessType = type;
+      state.defaultShortcuts = AVAILABLE_SHORTCUTS[type];
+      state.customShortcuts = [];
     },
 
     setDefaultShortcuts(state, action: PayloadAction<Shortcut[]>) {
@@ -47,8 +51,8 @@ const shortcutsSlice = createSlice({
     },
 
     clearAllShortcuts(state) {
-      state.businessType = "";
-      state.defaultShortcuts = [];
+      state.businessType = "pilates";
+      state.defaultShortcuts = AVAILABLE_SHORTCUTS["pilates"];
       state.customShortcuts = [];
     },
   },
