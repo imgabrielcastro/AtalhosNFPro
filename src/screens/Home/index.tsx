@@ -30,15 +30,26 @@ export default function HomePage() {
             <VStack style={{ alignItems: "center" }}>
               <Image
                 source={require("../../assets/images/mensalidadeFree.png")}
-                style={{ width: SCREEN_WIDTH * 0.95, height: 180 }}
+                style={{ width: SCREEN_WIDTH * 0.96, height: 180 }}
                 resizeMode="contain"
               />
             </VStack>
 
             <TitleShortcut />
             <ShortcutList />
-            <Text variant="titleMedium">Clientes</Text>
-            <HStack style={{ gap: 12, justifyContent: "center" }}>
+            <Text variant="titleMedium" style={{ paddingHorizontal: 4 }}>
+              Clientes
+            </Text>
+            <HStack
+              style={{
+                gap: 12,
+                justifyContent: "center",
+                shadowOffset: { width: 0, height: 1 },
+                shadowOpacity: 0.2,
+                shadowColor: "#000",
+                elevation: 2,
+              }}
+            >
               <CardInfo title="Ativos" value="11" icon={faUserGroup} />
               <CardInfo title="Novos" value="7" icon={faArrowUpRightDots} />
             </HStack>

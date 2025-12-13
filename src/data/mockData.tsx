@@ -8,7 +8,8 @@ export const AVAILABLE_SHORTCUTS: Record<
   pilates: [
     { id: "agenda", label: "Agenda" },
     { id: "evolucao", label: "Evolução" },
-    { id: "evolucao", label: "Evolução" },
+    { id: "treino", label: "Treinos" },
+    { id: "financeiro", label: "Financeiro" },
   ],
 
   musculacao: [
