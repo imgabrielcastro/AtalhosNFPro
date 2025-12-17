@@ -12,7 +12,6 @@ interface IShortcutState {
   customShortcuts: Shortcut[];
 }
 
-// ✅ Estado inicial SEMPRE vai ser carregado
 const initialState: IShortcutState = {
   businessType: "pilates",
   defaultShortcuts: AVAILABLE_SHORTCUTS["pilates"],
@@ -21,7 +20,7 @@ const initialState: IShortcutState = {
 
 const shortcutsSlice = createSlice({
   name: "shortcuts",
-  initialState, // ✅ Vai usar sempre este initialState
+  initialState,
   reducers: {
     setBusinessType(state, action: PayloadAction<BusinessType>) {
       const type = action.payload;
@@ -34,8 +33,15 @@ const shortcutsSlice = createSlice({
       state.defaultShortcuts = action.payload;
     },
 
-    addCustomShortcut(state, action: PayloadAction<Shortcut>) {
-      state.customShortcuts.push(action.payload);
+    addCustomShortcut: (state, action) => {
+      const shortcut = action.payload;
+      const alreadyExists =
+        state.customShortcuts.some((s) => s.id === shortcut.id) ||
+        state.defaultShortcuts.some((s) => s.id === shortcut.id);
+
+      if (!alreadyExists) {
+        state.customShortcuts.push(shortcut);
+      }
     },
 
     removeCustomShortcut(state, action: PayloadAction<string>) {

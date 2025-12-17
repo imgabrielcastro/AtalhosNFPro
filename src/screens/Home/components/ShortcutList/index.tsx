@@ -2,7 +2,17 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import HStack from "../../../../components/Stacks/HStack";
 import { ShortcutItem } from "../ShortcutItem/index";
-import { faPlus, faPeopleGroup, faCartPlus, faDumbbell, faMoneyBill, faComputer, faUserPlus, faDashboard, faWeight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faPeopleGroup,
+  faCartPlus,
+  faDumbbell,
+  faMoneyBill,
+  faComputer,
+  faUserPlus,
+  faDashboard,
+  faWeight,
+} from "@fortawesome/free-solid-svg-icons";
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 
 const ICONS_MAP: Record<string, any> = {
@@ -21,15 +31,17 @@ export default function ShortcutList() {
     (state: RootState) => state.shortcuts
   );
 
-  console.log("defaultShortcuts:", defaultShortcuts);
-  console.log("customShortcuts:", customShortcuts);
-
   const shortcuts = [...defaultShortcuts, ...customShortcuts];
 
-  console.log("all shortcuts:", shortcuts);
-
   return (
-    <HStack style={{ gap: 16, flexWrap: "wrap", justifyContent: "flex-start", paddingLeft: 4}}>
+    <HStack
+      style={{
+        gap: 16,
+        flexWrap: "wrap",
+        justifyContent: "flex-start",
+        paddingLeft: 4,
+      }}
+    >
       {shortcuts.map((shortcut) => (
         <ShortcutItem
           key={shortcut.id}

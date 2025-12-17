@@ -5,7 +5,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons/faHome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons/faCalendar";
 import Menu from "../screens/Menu";
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import NextFitPay from "../screens/NextFitPay";
 import Clients from "../screens/Clientes";
 

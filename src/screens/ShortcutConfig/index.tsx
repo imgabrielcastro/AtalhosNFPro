@@ -1,12 +1,11 @@
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
-import { Text } from "react-native-paper";
 import { theme } from "../../theme/theme";
-import HStack from "../../components/Stacks/HStack";
 import { useNavigation } from "@react-navigation/native";
-import HeaderShortcut from "./components/HeaderShortcut";
+import HeaderShortcut from "../ShortcutConfig/components/HeaderShortcut";
 import VStack from "../../components/Stacks/VStack";
 import { ScrollView } from "react-native-gesture-handler";
+import PersonalizeShortcutsScreen from "./components/PersonalizeShortcutsScreen";
 
 export default function ShortcutConfig() {
   const navigation = useNavigation<any>();
@@ -27,9 +26,7 @@ export default function ShortcutConfig() {
             flex: 1,
           }}
         >
-          <Text style={{ textAlign: "center" }} variant="titleLarge">
-            Atalhos
-          </Text>
+          <PersonalizeShortcutsScreen />
         </ScrollView>
       </VStack>
     </View>

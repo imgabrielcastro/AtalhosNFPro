@@ -1,4 +1,3 @@
-// ShortcutItem.tsx
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import VStack from "../../../../components/Stacks/VStack";
 import { Text } from "react-native-paper";
@@ -11,13 +10,21 @@ interface Props {
 }
 
 export function ShortcutItem({ icon, label }: Props) {
+  const ITEM_WIDTH = SCREEN_WIDTH * 0.2;
+
   return (
-    <VStack>
+    <VStack
+      style={{
+        width: ITEM_WIDTH,
+        alignItems: "center",
+        gap: 6,
+      }}
+    >
       <VStack
         style={{
-          padding: 32,
+          padding: 24,
           backgroundColor: theme.colors.surface,
-          width: SCREEN_WIDTH * 0.2,
+          width: "100%",
           borderRadius: 12,
           alignItems: "center",
           shadowOffset: { width: 0, height: 1 },
@@ -27,7 +34,15 @@ export function ShortcutItem({ icon, label }: Props) {
         <FontAwesomeIcon icon={icon} size={24} color={theme.colors.header} />
       </VStack>
 
-      <Text style={{ textAlign: "center" }} variant="titleSmall">
+      <Text
+        variant="bodySmall"
+        numberOfLines={2}
+        style={{
+          textAlign: "center",
+          width: "100%",
+          flexShrink: 1,
+        }}
+      >
         {label}
       </Text>
     </VStack>
