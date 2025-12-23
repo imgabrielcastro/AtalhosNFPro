@@ -61,6 +61,20 @@ const shortcutsSlice = createSlice({
       state.defaultShortcuts = AVAILABLE_SHORTCUTS["pilates"];
       state.customShortcuts = [];
     },
+
+    reorderShortcuts(state, action: PayloadAction<Shortcut[]>) {
+      const reordered = action.payload;
+      const defaultIds = AVAILABLE_SHORTCUTS[state.businessType].map(
+        (s) => s.id
+      );
+
+      state.defaultShortcuts = reordered.filter((s) =>
+        defaultIds.includes(s.id)
+      );
+      state.customShortcuts = reordered.filter(
+        (s) => !defaultIds.includes(s.id)
+      );
+    },
   },
 });
 

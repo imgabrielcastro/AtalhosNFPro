@@ -79,9 +79,9 @@ export default function ActiveShortcuts({ shortcuts, onRemove }: Props) {
               <FontAwesomeIcon
                 icon={ICONS_MAP[shortcut.id] ?? faPeopleGroup}
                 size={22}
-                color={theme.colors.header}
+                color={theme.colors.secondary}
               />
-              <Text style={{ color: theme.colors.header }} variant="titleSmall">
+              <Text style={{ color: theme.colors.secondary }} variant="titleSmall">
                 {shortcut.label}
               </Text>
             </HStack>
@@ -89,7 +89,7 @@ export default function ActiveShortcuts({ shortcuts, onRemove }: Props) {
               <FontAwesomeIcon
                 icon={faMinusCircle}
                 size={16}
-                color={theme.colors.header}
+                color={theme.colors.secondary}
               />
             </TouchableOpacity>
           </HStack>
