@@ -14,7 +14,7 @@ import ShortcutList from "./components/ShortcutList";
 
 export default function HomePage() {
   return (
-    <VStack style={{ flex: 1, backgroundColor: theme.colors.header }}>
+    <VStack style={{ flex: 1, backgroundColor: theme.colors.secondary }}>
       <HeaderUsuario nome="Gabriel" />
       <VStack
         style={{

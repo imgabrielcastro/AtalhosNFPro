@@ -2,32 +2,15 @@ import HStack from "../../../../components/Stacks/HStack";
 import VStack from "../../../../components/Stacks/VStack";
 import { Text } from "react-native-paper";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { ICONS_MAP } from "../../../../constants/icons";
 import {
   faPeopleGroup,
-  faCartPlus,
-  faDumbbell,
-  faMoneyBill,
-  faUserPlus,
-  faDashboard,
-  faWeight,
   faMinusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { theme } from "../../../../theme/theme";
 import { TouchableOpacity } from "react-native";
 import { SCREEN_WIDTH } from "../../../../constants";
 import { SCREEN_HEIGHT } from "../../../../constants";
-
-const ICONS_MAP: Record<string, any> = {
-  agenda: faCalendarDays,
-  evolucao: faPeopleGroup,
-  treino: faDumbbell,
-  financeiro: faMoneyBill,
-  wod: faWeight,
-  novaVenda: faCartPlus,
-  novoCliente: faUserPlus,
-  dashboard: faDashboard,
-};
 
 interface Shortcut {
   id: string;
@@ -81,7 +64,10 @@ export default function ActiveShortcuts({ shortcuts, onRemove }: Props) {
                 size={22}
                 color={theme.colors.secondary}
               />
-              <Text style={{ color: theme.colors.secondary }} variant="titleSmall">
+              <Text
+                style={{ color: theme.colors.secondary }}
+                variant="titleSmall"
+              >
                 {shortcut.label}
               </Text>
             </HStack>

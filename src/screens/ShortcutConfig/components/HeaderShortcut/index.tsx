@@ -16,7 +16,7 @@ export default function HeaderShortcut() {
         marginLeft: 12,
         paddingTop: 45,
         alignItems: "center",
-        backgroundColor: theme.colors.header,
+        backgroundColor: theme.colors.secondary,
         padding: 16,
       }}
     >

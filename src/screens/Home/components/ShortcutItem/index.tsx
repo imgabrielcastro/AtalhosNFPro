@@ -31,7 +31,7 @@ export function ShortcutItem({ icon, label }: Props) {
           shadowOpacity: 0.2,
         }}
       >
-        <FontAwesomeIcon icon={icon} size={24} color={theme.colors.header} />
+        <FontAwesomeIcon icon={icon} size={24} color={theme.colors.secondary} />
       </VStack>
 
       <Text

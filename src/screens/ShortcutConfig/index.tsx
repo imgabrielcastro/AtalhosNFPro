@@ -12,10 +12,10 @@ export default function ShortcutConfig() {
   return (
     <View
       style={[
-        { backgroundColor: theme.colors.header, paddingVertical: 12, flex: 1 },
+        { backgroundColor: theme.colors.secondary, paddingTop: 12, flex: 1 },
       ]}
     >
-      <VStack style={{ flex: 1, backgroundColor: theme.colors.header }}>
+      <VStack style={{ flex: 1, backgroundColor: theme.colors.secondary }}>
         <HeaderShortcut />
         <ScrollView
           style={{

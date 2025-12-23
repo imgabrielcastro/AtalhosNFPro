@@ -1,32 +1,13 @@
 import VStack from "../../../../components/Stacks/VStack";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { ShortcutRow } from ".././ShortcutRow";
-import {
-  faPeopleGroup,
-  faCartPlus,
-  faDumbbell,
-  faMoneyBill,
-  faUserPlus,
-  faDashboard,
-  faWeight,
-  faCalendarDays,
-} from "@fortawesome/free-solid-svg-icons";
+import { ICONS_MAP } from "../../../../constants/icons";
+import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 
 interface Shortcut {
   id: string;
   label: string;
 }
-
-const ICONS_MAP: Record<string, any> = {
-  agenda: faCalendarDays,
-  evolucao: faPeopleGroup,
-  treino: faDumbbell,
-  financeiro: faMoneyBill,
-  wod: faWeight,
-  novaVenda: faCartPlus,
-  novoCliente: faUserPlus,
-  dashboard: faDashboard,
-};
 
 interface Props {
   shortcuts: Shortcut[];

@@ -25,16 +25,14 @@ export default function CardInfo(props: ICardInfoProps) {
         borderColor: "#e0e0e0",
         alignItems: "center",
         justifyContent: "space-between",
-        height: 80, 
+        height: 80,
       }}
     >
       <VStack style={{ gap: 12 }}>
         <Text variant="titleSmall">{title}</Text>
-        <Text variant="titleMedium">
-          {value}
-        </Text>
+        <Text variant="titleMedium">{value}</Text>
       </VStack>
-      <FontAwesomeIcon icon={icon} size={24} color={theme.colors.header} />
+      <FontAwesomeIcon icon={icon} size={24} color={theme.colors.secondary} />
     </HStack>
   );
 }

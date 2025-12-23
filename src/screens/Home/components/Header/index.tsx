@@ -14,7 +14,7 @@ export default function HeaderUsuario({ nome }: IHeaderUsuario) {
   
 
   return (
-    <View style={[{ backgroundColor: theme.colors.header, padding: 12 }]}>
+    <View style={[{ backgroundColor: theme.colors.secondary, padding: 12 }]}>
       <HStack style={{ alignItems: "center", gap: 12, paddingTop: 40 }}>
         <Avatar.Image
           size={38}
