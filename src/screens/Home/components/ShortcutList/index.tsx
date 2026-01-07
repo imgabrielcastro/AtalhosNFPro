@@ -14,6 +14,7 @@ import {
   faWeight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const ICONS_MAP: Record<string, any> = {
   agenda: faCalendarDays,
@@ -27,6 +28,7 @@ const ICONS_MAP: Record<string, any> = {
 };
 
 export default function ShortcutList() {
+  const navigation = useNavigation<any>();
   const { defaultShortcuts, customShortcuts } = useSelector(
     (state: RootState) => state.shortcuts
   );
@@ -49,7 +51,11 @@ export default function ShortcutList() {
           label={shortcut.label}
         />
       ))}
-      <ShortcutItem icon={faPlus} label="Novo" />
+      <ShortcutItem
+        icon={faPlus}
+        label="Novo"
+        navigate={() => navigation.navigate("ShortcutConfig")}
+      />
     </HStack>
   );
 }

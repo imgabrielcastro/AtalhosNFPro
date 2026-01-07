@@ -56,7 +56,7 @@ export default function PersonalizeShortcutsScreen() {
 
       <ActiveShortcuts shortcuts={activeShortcuts} onRemove={handleRemove} />
 
-      <Text variant="titleMedium" style={{ marginTop: 24 }}>
+      <Text variant="titleMedium" style={{ marginTop: 24, paddingBottom: 16 }}>
         Atalhos disponíveis
       </Text>
 

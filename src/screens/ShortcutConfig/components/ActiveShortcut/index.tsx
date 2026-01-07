@@ -74,7 +74,7 @@ export default function ActiveShortcuts({ shortcuts, onRemove }: Props) {
             <TouchableOpacity onPress={() => onRemove(shortcut.id)}>
               <FontAwesomeIcon
                 icon={faMinusCircle}
-                size={16}
+                size={20}
                 color={theme.colors.secondary}
               />
             </TouchableOpacity>

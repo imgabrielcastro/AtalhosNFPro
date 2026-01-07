@@ -88,9 +88,14 @@ const shortcutsSlice = createSlice({
           ? persistedType
           : "pilates";
 
-      const defaultShortcuts = AVAILABLE_SHORTCUTS[businessType];
+      const persistedDefaults = persisted?.defaultShortcuts;
 
-      const defaultIds = new Set(defaultShortcuts.map((s) => s.id));
+      const defaultShortcuts =
+        persistedDefaults !== undefined
+          ? persistedDefaults
+          : AVAILABLE_SHORTCUTS[businessType];
+
+      const defaultIds = new Set(defaultShortcuts.map((s: any) => s.id));
 
       const customShortcuts = (persisted?.customShortcuts ?? []).filter(
         (s: any) => !defaultIds.has(s.id)

@@ -32,12 +32,12 @@ export function ShortcutRow({ shortcut, iconAction, onPress, icon }: Props) {
       }}
     >
       <HStack style={{ alignItems: "center", gap: 8 }}>
-        <FontAwesomeIcon icon={icon} size={22} color={theme.colors.header} />
+        <FontAwesomeIcon icon={icon} size={22} color={theme.colors.secondary} />
         <Text variant="titleSmall">{shortcut.label}</Text>
       </HStack>
 
       <TouchableOpacity onPress={() => onPress(shortcut.id)}>
-        <FontAwesomeIcon icon={iconAction} size={16} />
+        <FontAwesomeIcon icon={iconAction} size={20} />
       </TouchableOpacity>
     </HStack>
   );

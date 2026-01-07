@@ -3,13 +3,15 @@ import VStack from "../../../../components/Stacks/VStack";
 import { Text } from "react-native-paper";
 import { theme } from "../../../../theme/theme";
 import { SCREEN_WIDTH } from "../../../../constants";
+import { TouchableOpacity } from "react-native";  
 
 interface Props {
   icon: any;
   label: string;
+  navigate?: () => void;
 }
 
-export function ShortcutItem({ icon, label }: Props) {
+export function ShortcutItem({ icon, label, navigate }: Props) {
   const ITEM_WIDTH = SCREEN_WIDTH * 0.2;
 
   return (
@@ -20,20 +22,25 @@ export function ShortcutItem({ icon, label }: Props) {
         gap: 6,
       }}
     >
-      <VStack
-        style={{
-          padding: 24,
-          backgroundColor: theme.colors.surface,
-          width: "100%",
-          borderRadius: 12,
-          alignItems: "center",
-          shadowOffset: { width: 0, height: 1 },
-          shadowOpacity: 0.2,
-        }}
-      >
-        <FontAwesomeIcon icon={icon} size={24} color={theme.colors.secondary} />
-      </VStack>
-
+      <TouchableOpacity onPress={navigate}>
+        <VStack
+          style={{
+            padding: 24,
+            backgroundColor: theme.colors.surface,
+            width: "100%",
+            borderRadius: 12,
+            alignItems: "center",
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.2,
+          }}
+        >
+          <FontAwesomeIcon
+            icon={icon}
+            size={24}
+            color={theme.colors.secondary}
+          />
+        </VStack>
+      </TouchableOpacity>
       <Text
         variant="bodySmall"
         numberOfLines={2}
