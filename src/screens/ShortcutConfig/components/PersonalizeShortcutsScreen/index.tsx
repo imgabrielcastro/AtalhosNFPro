@@ -54,7 +54,13 @@ export default function PersonalizeShortcutsScreen() {
     <VStack style={{ paddingHorizontal: 32, padding: 16 }}>
       <Text variant="titleMedium">Atalhos na tela inicial</Text>
 
-      <ActiveShortcuts shortcuts={activeShortcuts} onRemove={handleRemove} />
+      {activeShortcuts.length > 0 ? (
+        <ActiveShortcuts shortcuts={activeShortcuts} onRemove={handleRemove} />
+      ) : (
+        <Text style={{ textAlign: "center", marginTop: 20, color: "#666" }}>
+          Nenhum atalho configurado na tela inicial
+        </Text>
+      )}
 
       <Text variant="titleMedium" style={{ marginTop: 24, paddingBottom: 16 }}>
         Atalhos disponíveis
