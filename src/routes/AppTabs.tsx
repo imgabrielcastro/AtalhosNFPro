@@ -31,8 +31,9 @@ const AppTabs = () => {
         component={HomePage}
         options={{
           tabBarLabel: "Início",
+          tabBarActiveTintColor: "#000",
           tabBarIcon: () => (
-            <FontAwesomeIcon icon={faHome} size={20} color={"#27454B"} />
+            <FontAwesomeIcon icon={faHome} size={20} />
           ),
         }}
       />
@@ -42,6 +43,7 @@ const AppTabs = () => {
         component={Clients}
         options={{
           tabBarLabel: "Clientes",
+          tabBarActiveTintColor: "#000",
           tabBarIcon: () => <FontAwesomeIcon icon={faUsers} size={20} />,
         }}
       />
@@ -50,6 +52,7 @@ const AppTabs = () => {
         component={NextFitPay}
         options={{
           tabBarLabel: "Next Fit Pay",
+          tabBarActiveTintColor: "#000",
           tabBarIcon: () => <FontAwesomeIcon icon={faCalendar} size={20} />,
         }}
       />
@@ -59,6 +62,7 @@ const AppTabs = () => {
         component={Menu}
         options={{
           tabBarLabel: "Menu",
+          tabBarActiveTintColor: "#000",
           tabBarIcon: () => <FontAwesomeIcon icon={faBars} size={20} />,
         }}
       />
