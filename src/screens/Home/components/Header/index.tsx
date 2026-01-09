@@ -4,7 +4,8 @@ import { Text, Avatar } from "react-native-paper";
 import { theme } from "../../../../theme/theme";
 import HStack from "../../../../components/Stacks/HStack";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faBell } from "@fortawesome/free-regular-svg-icons";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { faGift } from "@fortawesome/free-solid-svg-icons";
 
 interface IHeaderUsuario {
   nome: string;
@@ -23,7 +24,8 @@ export default function HeaderUsuario({ nome }: IHeaderUsuario) {
         <Text variant="titleLarge" style={{ color: theme.colors.text }}>
           Olá, <Text style={{ fontWeight: "bold", color: theme.colors.text }}>{nome}!</Text>
         </Text>
-        <HStack style={{ marginLeft: "auto" }}>
+        <HStack style={{ marginLeft: "auto", gap: 12 }}>
+          <FontAwesomeIcon icon={faGift} size={24} color={theme.colors.text} />
           <FontAwesomeIcon icon={faBell} size={24} color={theme.colors.text} />
         </HStack>
       </HStack>
