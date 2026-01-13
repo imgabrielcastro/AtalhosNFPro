@@ -30,8 +30,8 @@ export function ShortcutItem({ icon, label, navigate }: Props) {
             width: "100%",
             borderRadius: 12,
             alignItems: "center",
-            shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.2,
+            ...(label === "Novo" ? {borderStyle: "dotted", borderColor: "#E2E2E2", borderWidth: 2.5} : {}),
+            ...(label !== "Novo" ? {shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2} : {}),
           }}
         >
           <FontAwesomeIcon
