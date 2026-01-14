@@ -30,7 +30,7 @@ const ICONS_MAP: Record<string, any> = {
 export default function ShortcutList() {
   const navigation = useNavigation<any>();
   const { defaultShortcuts, customShortcuts } = useSelector(
-    (state: RootState) => state.shortcuts
+    (state: RootState) => state.shortcuts as any
   );
 
   const shortcuts = [...defaultShortcuts, ...customShortcuts];

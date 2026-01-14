@@ -11,6 +11,7 @@ import { theme } from "../../theme/theme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../constants";
 import TitleShortcut from "./components/ShortCutTitle";
 import ShortcutList from "./components/ShortcutList";
+import NextSchedule from "./components/NextSchedule";
 
 export default function HomePage() {
   return (
@@ -53,6 +54,7 @@ export default function HomePage() {
               <CardInfo title="Ativos" value="11" icon={faUserGroup} />
               <CardInfo title="Novos" value="7" icon={faArrowUpRightDots} />
             </HStack>
+            <NextSchedule start="08:00" end="10:00" modality="Treino" instructor="Gabriel" date="10/01/2026" maxCapacity={10} currentCapacity={5}/>
           </VStack>
         </ScrollView>
       </VStack>
