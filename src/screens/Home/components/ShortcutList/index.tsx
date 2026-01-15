@@ -1,5 +1,10 @@
+// components/ShortcutList.tsx
+import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
+import { selectOrderedShortcuts } from "../../../../store/selectors/shortcutsSelectors";
+import { initializeOrder } from "../../../../store/slices/shortcutsSlice";
+import { useDispatch } from "react-redux";
 import HStack from "../../../../components/Stacks/HStack";
 import { ShortcutItem } from "../ShortcutItem/index";
 import {
@@ -8,7 +13,6 @@ import {
   faCartPlus,
   faDumbbell,
   faMoneyBill,
-  faComputer,
   faUserPlus,
   faDashboard,
   faWeight,
@@ -29,19 +33,31 @@ const ICONS_MAP: Record<string, any> = {
 
 export default function ShortcutList() {
   const navigation = useNavigation<any>();
-  const { defaultShortcuts, customShortcuts } = useSelector(
-    (state: RootState) => state.shortcuts as any
-  );
-
-  const shortcuts = [...defaultShortcuts, ...customShortcuts];
-
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(initializeOrder());
+  }, [dispatch]);
+  const shortcuts = useSelector(selectOrderedShortcuts);
+  const handleNavigation = (shortcutId: string) => {
+    switch(shortcutId) {
+      case 'agenda':
+        navigation.navigate('Agenda');
+        break;
+      case 'treino':
+        navigation.navigate('Treinos');
+        break;
+      default:
+        navigation.navigate('Home');
+    }
+  };
   return (
     <HStack
       style={{
         gap: 16,
         flexWrap: "wrap",
         justifyContent: "flex-start",
-        paddingLeft: 4,
+        paddingVertical: 8,
       }}
     >
       {shortcuts.map((shortcut) => (
@@ -49,8 +65,10 @@ export default function ShortcutList() {
           key={shortcut.id}
           icon={ICONS_MAP[shortcut.id] || faPeopleGroup}
           label={shortcut.label}
+          navigate={() => handleNavigation(shortcut.id)}
         />
       ))}
+      
       <ShortcutItem
         icon={faPlus}
         label="Novo"

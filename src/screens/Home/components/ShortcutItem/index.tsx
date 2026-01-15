@@ -27,7 +27,6 @@ export function ShortcutItem({ icon, label, navigate }: Props) {
           style={{
             padding: 24,
             backgroundColor: theme.colors.surface,
-            width: "100%",
             borderRadius: 12,
             alignItems: "center",
             ...(label === "Novo" ? {borderStyle: "dotted", borderColor: "#E2E2E2", borderWidth: 2.5} : {}),

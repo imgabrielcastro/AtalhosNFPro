@@ -1,120 +1,115 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { REHYDRATE } from "redux-persist";
-import { AVAILABLE_SHORTCUTS, BusinessType } from "../../data/mockData";
 
 export interface Shortcut {
   id: string;
   label: string;
 }
 
-interface IShortcutState {
-  businessType: BusinessType;
+interface ShortcutsState {
   defaultShortcuts: Shortcut[];
   customShortcuts: Shortcut[];
+  shortcutOrder: string[]; 
 }
 
-const initialState: IShortcutState = {
-  businessType: "pilates",
-  defaultShortcuts: AVAILABLE_SHORTCUTS["pilates"],
+const initialState: ShortcutsState = {
+  defaultShortcuts: [
+    { id: "agenda", label: "Agenda" },
+    { id: "treino", label: "Treino" },
+    { id: "financeiro", label: "Financeiro" },
+    { id: "wod", label: "WOD" },
+  ],
   customShortcuts: [],
+  shortcutOrder: [] 
 };
 
 const shortcutsSlice = createSlice({
   name: "shortcuts",
   initialState,
   reducers: {
-    setBusinessType(state, action: PayloadAction<BusinessType>) {
-      const type = action.payload;
-
-      state.businessType = type;
-      state.customShortcuts = [];
-      state.defaultShortcuts = AVAILABLE_SHORTCUTS[type];
-    },
-
-    addCustomShortcut(state, action: PayloadAction<Shortcut>) {
-      const shortcut = action.payload;
-
-      const alreadyExists =
-        state.customShortcuts.some((s) => s.id === shortcut.id) ||
-        state.defaultShortcuts.some((s) => s.id === shortcut.id);
-
-      if (!alreadyExists) {
-        state.customShortcuts.push(shortcut);
+    addCustomShortcut: (state, action: PayloadAction<Shortcut>) => {
+      if (!state.shortcutOrder) {
+        state.shortcutOrder = [];
+      }
+      
+      const exists = [...state.defaultShortcuts, ...state.customShortcuts]
+        .some(s => s.id === action.payload.id);
+      
+      if (!exists) {
+        state.customShortcuts.push(action.payload);
+        state.shortcutOrder.push(action.payload.id);
       }
     },
-
-    removeCustomShortcut(state, action: PayloadAction<string>) {
-      state.customShortcuts = state.customShortcuts.filter(
-        (s) => s.id !== action.payload
-      );
-    },
-
-    removeDefaultShortcut(state, action: PayloadAction<string>) {
+    
+    removeDefaultShortcut: (state, action: PayloadAction<string>) => {
       state.defaultShortcuts = state.defaultShortcuts.filter(
-        (s) => s.id !== action.payload
+        s => s.id !== action.payload
       );
+      if (state.shortcutOrder) {
+        state.shortcutOrder = state.shortcutOrder.filter(
+          id => id !== action.payload
+        );
+      }
     },
-
-    clearAllShortcuts(state) {
-      state.businessType = "pilates";
+    
+    removeCustomShortcut: (state, action: PayloadAction<string>) => {
+      state.customShortcuts = state.customShortcuts.filter(
+        s => s.id !== action.payload
+      );
+      if (state.shortcutOrder) {
+        state.shortcutOrder = state.shortcutOrder.filter(
+          id => id !== action.payload
+        );
+      }
+    },
+    
+    reorderShortcuts: (state, action: PayloadAction<Shortcut[]>) => {
+      if (!state.shortcutOrder) {
+        state.shortcutOrder = [];
+      }
+      
+      const newOrder = action.payload.map(item => item.id);
+      
+      const allShortcutIds = [
+        ...state.defaultShortcuts.map(s => s.id),
+        ...state.customShortcuts.map(s => s.id)
+      ];
+      
+      const validOrder = newOrder.filter(id => allShortcutIds.includes(id));
+      
+      state.shortcutOrder = validOrder;
+    },
+    
+        initializeOrder: (state) => {
+      if (!state.shortcutOrder || !Array.isArray(state.shortcutOrder)) {
+        state.shortcutOrder = [];
+      }
+      
+    
+      if (state.shortcutOrder.length === 0) {
+        state.shortcutOrder = [
+          ...state.defaultShortcuts.map(s => s.id),
+          ...state.customShortcuts.map(s => s.id)
+        ];
+      }
+    },
+    
+    resetShortcuts: (state) => {
+      state.defaultShortcuts = initialState.defaultShortcuts;
       state.customShortcuts = [];
-      state.defaultShortcuts = AVAILABLE_SHORTCUTS["pilates"];
-    },
-
-    reorderShortcuts(state, action: PayloadAction<Shortcut[]>) {
-      const reordered = action.payload;
-      const defaultIds = AVAILABLE_SHORTCUTS[state.businessType].map(
-        (s) => s.id
-      );
-
-      state.defaultShortcuts = reordered.filter((s) =>
-        defaultIds.includes(s.id)
-      );
-
-      state.customShortcuts = reordered.filter(
-        (s) => !defaultIds.includes(s.id)
-      );
-    },
-  },
-
-  extraReducers: (builder) => {
-    builder.addCase(REHYDRATE, (state, action: any) => {
-      const persisted = action.payload?.shortcuts;
-
-      const persistedType = persisted?.businessType;
-
-      const businessType: BusinessType =
-        persistedType && AVAILABLE_SHORTCUTS[persistedType as BusinessType]
-          ? persistedType
-          : "pilates";
-
-      const persistedDefaults = persisted?.defaultShortcuts;
-
-      const defaultShortcuts =
-        persistedDefaults !== undefined
-          ? persistedDefaults
-          : AVAILABLE_SHORTCUTS[businessType];
-
-      const defaultIds = new Set(defaultShortcuts.map((s: any) => s.id));
-
-      const customShortcuts = (persisted?.customShortcuts ?? []).filter(
-        (s: any) => !defaultIds.has(s.id)
-      );
-
-      state.businessType = businessType;
-      state.defaultShortcuts = defaultShortcuts;
-      state.customShortcuts = customShortcuts;
-    });
+      state.shortcutOrder = initialState.defaultShortcuts.map(s => s.id);
+    }
   },
 });
 
+export const shortcutsReducer = shortcutsSlice.reducer;
+
 export const {
-  setBusinessType,
   addCustomShortcut,
-  removeCustomShortcut,
   removeDefaultShortcut,
-  clearAllShortcuts,
+  removeCustomShortcut,
   reorderShortcuts,
+  initializeOrder,
+  resetShortcuts
 } = shortcutsSlice.actions;
 
 export default shortcutsSlice.reducer;

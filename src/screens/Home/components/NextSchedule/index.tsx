@@ -36,7 +36,6 @@ export default function NextSchedule({
         style={{
           backgroundColor: theme.colors.surface,
           borderRadius: 12,
-
           padding: 18,
           gap: 8,
           shadowOffset: { width: 0, height: 1 },
@@ -61,12 +60,14 @@ export default function NextSchedule({
         </HStack>
 
         <HStack style={{ alignItems: 'center', gap: 4}}>
-          <FontAwesomeIcon icon={faBarsStaggered} /> <Text variant="titleMedium">{modality}</Text>
+          <FontAwesomeIcon icon={faBarsStaggered} />
+          <Text variant="titleMedium">{modality}</Text>
         </HStack>
 
         <HStack style={{ justifyContent: "space-between", width: "100%" }}>
           <HStack style={{ alignItems: 'center', gap: 4}}>
-            <FontAwesomeIcon icon={faUser} /> <Text variant="titleSmall">{instructor}</Text>
+            <FontAwesomeIcon icon={faUser} />
+            <Text variant="titleSmall">{instructor}</Text>
           </HStack>
 
           <HStack style={{ alignItems: 'center', gap: 4}}>
